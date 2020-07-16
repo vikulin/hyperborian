@@ -1,0 +1,8 @@
+<zk>
+	<hbox height="85px"/>
+	<groupbox width="445px">
+		<div align="center">
+		    <label value="Access is denied" style="color:red;"/>
+	    </div>
+    </groupbox>    
+</zk>

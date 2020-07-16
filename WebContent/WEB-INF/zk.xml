@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	Created by ZK Studio
+-->
+
+<zk>
+	<device-config>
+		<device-type>ajax</device-type>
+		<timeout-uri></timeout-uri><!-- An empty URL can cause the browser to reload the same URL -->
+	</device-config>
+	<listener>
+	    <listener-class>listener.LocaleProvider</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.zkoss.zkplus.hibernate.HibernateSessionContextListener</listener-class>
+	</listener>
+	<!-- listener> <description>Jaas SecurityContext Handler</description> <listener-class>clubiq.services.AcegisecurityAssociationListener</listener-class> 
+		</listener -->
+	<listener>
+		<description>Hibernate "Open Session In View" Session Lifecycle</description>
+		<listener-class>listener.OpenSessionInViewListener</listener-class>
+	</listener>
+	<listener>
+		<description>Hibernate SessionFactory Lifecycle</description>
+		<listener-class>org.zkoss.zkplus.hibernate.HibernateSessionFactoryListener</listener-class>
+	</listener>
+
+	<desktop-config>
+		<disable-behind-modal>false</disable-behind-modal><!-- default: true -->
+		<desktop-timeout>1000000</desktop-timeout>
+		<file-check-period>5</file-check-period>
+		<!-- disable-theme-uri>~./zul/css/norm*.css.dsp*</disable-theme-uri> <theme-uri>~./zul/css/normlg*.css.dsp*</theme-uri -->
+	</desktop-config>
+	<library-property>
+		<name>org.zkoss.zul.theme.fontSizeM</name>
+		<value>17px</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.zul.theme.fontSizeS</name>
+		<value>15px</value>
+	</library-property>
+	<library-property>
+		<name>org.zkoss.zul.theme.fontSizeXS</name>
+		<value>14px</value>
+	</library-property>
+	<!-- system-config>
+		<disable-event-thread>false</disable-event-thread>
+		<max-upload-size>-1</max-upload-size>
+	</system-config-->
+	<session-config>
+		<session-timeout>1000000</session-timeout>
+		<timer-keep-alive>false</timer-keep-alive>
+	</session-config>
+	<!-- Enable event thread has deprecated -->
+	<system-config>
+	    <disable-event-thread>true</disable-event-thread>
+	</system-config>
+    <system-config>
+	   <crawlable>true</crawlable>
+	</system-config>
+	<language-mapping> 
+		 <language-name>zul</language-name> 
+		 <extension>zhtml</extension> 
+	</language-mapping>
+</zk>

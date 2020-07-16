@@ -1,0 +1,11 @@
+<?page title="(c) Hyperborian.org"?>
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+	<style src="css/search.css" />
+	<window title=" " border="normal">
+		<box orient="horizontal" sclass="searchform">
+			<textbox sclass="searchfield"
+				placeholder="Please type some text" />
+			<button sclass="mybtn" image="image/search.png"/>
+		</box>
+	</window>
+</zk>

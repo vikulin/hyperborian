@@ -1,0 +1,17 @@
+<beans 
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:zkspc="http://www.zkoss.org/2008/zkspring/core"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.zkoss.org/2008/zkspring/core
+       https://www.zkoss.org/2008/zkspring/core/zkspring-core.xsd">
+
+	<!-- Config ZK Spring Core to use enhanced features such as application 
+		scope, desktop scope, page scope, idspace scope, execution scope, etc. -->
+	<zkspc:zk-config></zkspc:zk-config>
+
+	<!-- other bean definitions -->
+	<bean id="DataSource" class="test.DataSourceImpl" />
+</beans>

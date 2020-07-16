@@ -1,0 +1,16 @@
+<zk xmlns:c="client" xmlns:h="http://www.zkoss.org/2005/zk/native">
+    <script type="text/javascript"
+        src='https://www.google.com/recaptcha/api.js' defer="true" />
+    <script><![CDATA[ 
+        function afterValidate(response){
+            var commandName = jq('#recaptcha').attr('command');
+            zkbind.$('$recaptcha').command(commandName, {"response":response});
+        } 
+    ]]>
+    </script>
+    
+    <h:div id="recaptcha" class="g-recaptcha"
+        data-sitekey="6Ld_QnkUAAAAAN8bu6DZdvYVUlXz1BVybZU6AbJC"
+        data-callback="afterValidate" command="verify"/>
+           
+</zk>

@@ -1,0 +1,57 @@
+<?component name="recaptcha" macroURI="/template/recaptcha.zhtml"?>
+<zk>
+	<window apply="controller.RegisterUserController" width="360px" contentStyle="padding-left:5px;" closable="true">
+		<groupbox title="Register" apply="org.zkoss.bind.BindComposer" 
+			viewModel="@id('vmUser') @init('viewmodel.UserViewModel')" >
+			
+			
+			<tablelayout columns="1">
+			    <tablechildren>
+			    	<hbox align="center" hflex="1" vflex="1">
+						<label value="Username" />
+			    	</hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <textbox id="username" value="${arg.object.username}" constraint="no empty"/>
+			    </tablechildren>
+			    <tablechildren>
+			    	<hbox align="center" hflex="1" vflex="1">
+			        	<label value="Email:" />
+			        </hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <textbox id="email" value="${arg.object.email}" constraint="no empty, /.+@.+\.[a-z]+/: Please enter an e-mail address"/>
+			    </tablechildren>
+			   	<tablechildren>
+			   		<hbox align="center" hflex="1" vflex="1">
+			        	<label value="Password:" />
+			        </hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <textbox id="password" value="${arg.object.password}" type="password" constraint="no empty"/>
+			    </tablechildren>
+			    <tablechildren>
+			    	<hbox align="center" hflex="1" vflex="1">
+			        	<label value="Confirm password:" />
+			        </hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <textbox id="confirmPassword" value="${arg.object.password}" type="password" constraint="no empty"/>
+			    </tablechildren>
+			</tablelayout>
+			<separator />
+			<!-- reCaptcha -->
+			<recaptcha/>
+			<!-- reCaptcha -->
+			<separator />
+			<hbox width="100%" widths="20%,25%,15%,20%,20%">
+				<span />
+				<button id="saveButton" label="Submit" disabled="@load(vmUser.disabled)" onClick="@command('submit')"/>
+				<span />
+				<button id="closeButton" label="Cancel"/>
+				<span />
+			</hbox>
+		</groupbox>
+		
+	</window>
+</zk>

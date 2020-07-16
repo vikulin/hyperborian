@@ -1,0 +1,3 @@
+<zk>
+	<button label="Logout" disabled="${empty execution.userPrincipal}" href="/j_spring_security_logout"/>
+</zk>

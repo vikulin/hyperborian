@@ -1,0 +1,422 @@
+<?page title="Hyperborian - Torrent search engine" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/theme" prefix="t"?>
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<?component name="scrolldiv" extends="div" class="component.ScrollDiv"?>
+<zk xmlns:n="native" xmlns:w="client">
+<style>
+body{
+	padding:0px 0px;
+	font-family:"Helvetica neue",Helvetica,Verdana,Sans-serif;
+}
+.column1 .z-window-embedded-cnt {
+	background: #005DFF;
+	color: #FFFFFF;
+}
+.column2 .z-window-embedded-cnt {
+	background: #FF7A00;
+	color: #FFFFFF;
+}
+.column3 .z-window-embedded-cnt {
+	background: #417D00;
+	color: #FFFFFF;
+}
+
+.z-textbox {
+    /* omitted */
+    font-size: 20px;
+    min-height: 32px;
+}
+.z-button {
+    font-size:14px;
+    text-shadow: none; /*(@baseTitleFontFamily, 14px, normal, #FFFFFF); */
+    border: none;
+    /* omitted */
+}
+.z-button {
+    .borderRadius(0);
+}
+.z-button {
+	color: #FFFFFF;
+    background:#5687A8;
+}
+.z-button:hover {
+   color: #FFFFFF;
+   background:#5E94B8;
+   .boxShadow(inset 0 -2px 0 #436983); /* for simulation 3d effect */
+}
+.z-button:active {
+   color: #FFFFFF;
+   background:#4C7895;
+   .boxShadow(inset 0 2px 0 #3A5B72); /* for simulation 3d effect */
+}
+.z-button:focus {
+   color: #FFFFFF;
+   background:#436983;
+   .boxShadow(none);
+}
+.z-button[disabled] {
+   color: #FFFFFF;
+   background:#ACACAC;
+   .boxShadow(none);
+   .opacity(1); /* no opacity needed */
+}
+.z-button {
+    /* omitted */
+    min-height: 32px;
+    
+}
+.z-image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.z-hlayout-inner {
+	${t:applyCSS3('box-sizing', 'border-box')};
+	height: 100%;
+	padding-left:5px;
+}
+.z-hlayout-inner:first-child {
+	width: 20%;
+}
+.z-hlayout-inner {
+	width: 50%;
+}
+.z-hlayout-inner:last-child {
+	width: 30%;
+	overflow:auto;
+}
+
+div.z-hlayout-inner{
+	padding-right: 0px !important;
+}
+div.z-vlayout-inner{
+	padding-top: 5px;
+	padding-bottom: 0px !important;
+}
+
+.z-listgroup-icon{
+    display: none;
+}
+
+.name {
+	color: #0654ba;
+	font-size: 11pt;
+	font-weight:700;
+}
+.price {
+	color:#333;
+	font-size:11pt;
+	line-height:1.1;
+	font-weight:700;
+}
+ 
+.z-a {
+	color: #5687A8;
+    text-decoration: none;
+}
+
+.z-a:hover {
+	color: #5E94B8;
+    text-decoration: underline;
+}
+
+.z-a:visited {
+	color: #0654ba;
+    text-decoration: underline;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+	.z-hlayout-inner:first-child {
+		width: 25%;
+	}
+	.z-hlayout-inner {
+		width: 75%;
+	}
+	.z-hlayout-inner:last-child {
+		display: none;
+	}
+	.title {
+		color: #0654ba;
+		font-size:10pt;
+		font-weight:600;
+	}
+	.price {
+		color:#333;
+		font-size:10pt;
+		line-height:1.1;
+		font-weight:700;
+	}
+	.z-listcell-content{ 
+  	font-size:11pt;
+  }
+}
+ 
+@media screen and (max-width: 750px) {
+	.z-hlayout-inner:first-child {
+		display: none;
+	}
+	.z-hlayout-inner {
+		width: 100%;
+		display: block;
+	}
+	.title {
+		color: #0654ba;
+		font-size:8pt;
+		font-weight:600;
+	}
+	.price {
+		color:#333;
+		font-size:8pt;
+		line-height:1.1;
+		font-weight:700;
+	}
+	.z-listcell-content{ 
+  	font-size:10pt;
+  }
+}
+.z-listgroup .z-listcell-content {
+	color: #5687A8;
+	font-weight:600;
+	padding: 0;
+}
+.z-window {
+	padding:0px;
+}
+.z-window-content {
+	padding-left:16px;
+	padding-right:5px;
+	padding-top:0;
+	padding-bottom:5px;
+}
+.z-listheader {
+  background: #5687A8;
+  border-left: 1px solid #bfc4c0;
+}
+.z-listcell {
+	padding-left:5px;
+	word-wrap: break-word;
+}
+.z-north-body, .z-south-body, .z-west-body, .z-center-body, .z-east-body{
+	padding-top: 0;
+}
+.z-listbox-header {
+    background: #5687A8;
+}
+.z-listhead-bar {
+    border-left: 1px solid #5687A8;
+    border-bottom: 1px solid #5687A8;
+}
+.nopadding > .z-window-content{
+	padding: 0;
+} 
+.marquee {
+ width: 285px;
+ margin: 0 auto;
+ white-space: nowrap;
+ overflow: hidden;
+ box-sizing: border-box;
+ /*border: 1px dotted #800000;*/
+}
+
+.marquee span {
+ display: inline-block;
+ padding-left: 100%;
+ animation: marquee 15s linear infinite;
+}
+
+.marquee span:hover {
+ animation-play-state: paused
+}
+
+@keyframes marquee {
+ 0%   { transform: translate(0, 0); }
+ 100% { transform: translate(-100%, 0); }
+}
+
+.z-progressmeter-image{
+	    background-color: #5687A8;
+}
+
+.z-hbox th, .z-vbox th, .z-hbox td, .z-vbox td{
+	padding: 5px;
+}
+</style>
+<window width="100%" id="torrentDetails" apply="controller.TorrentDetailsController" height="100%">
+		<script src="/js/fireOnScroll.js"/>
+		<script src="/js/disqus.js" defer="true"/>
+		<script src="/js/wiki.js" defer="true"/>
+		<vlayout sclass="column1">
+				<a href="/">
+					<image src="/image/logo-m.png" height="65px" />
+				</a>
+			</vlayout>
+
+			<vlayout sclass="column2" vflex="min">
+
+			</vlayout>
+			<vlayout sclass="column3" >
+	
+		</vlayout>
+
+		<hlayout vflex="1" style="background-color: #FFFFFF;">
+			<vlayout sclass="column1" >
+				<groupbox title="Latest">
+					<listbox id="latestTorrents" emptyMessage="No results" itemRenderer="view.TopDownloadsRenderer">
+						<listhead>
+							<listheader width="100%" align="left"/>
+						</listhead>
+						<template name="model">
+							<listitem>
+								<listcell label="${each.name}"></listcell>
+							</listitem>
+						</template>
+					</listbox>
+				</groupbox> 
+			</vlayout>
+            <scrolldiv height="100%" viewModel="@id('vmTorrent') @init('viewmodel.TorrentFileViewModel')" style="overflow:auto;overflow-x: hidden;" id="myScrollDiv" w:onBind="jq(this).on('scroll', fireOnScroll)"> 
+			<vlayout sclass="column2">
+				<groupbox id="panelTitle">
+					<hbox>
+						<html id="wikiContent">
+						</html>
+	            		<tablelayout columns="2">
+			    			<tablechildren>
+			    				<label value="Created:"/>
+			    			</tablechildren>
+			    			<tablechildren>
+			    				<label id="createDate" value="Created:"/>
+			    			</tablechildren>
+			    			<tablechildren>
+			    				<label value="Size:"/>
+			    			</tablechildren>
+			    			<tablechildren>
+			    				<label id="totalSize"/>
+			    			</tablechildren>
+			    			<tablechildren>
+			    				<label value="Downloads:"/>
+			    			</tablechildren>
+			    			<tablechildren>
+			    				<label id="downloads"/>
+			    			</tablechildren>
+			    			<tablechildren>
+			    				<label value="Seeds:"/>
+			    			</tablechildren>
+			    			<tablechildren>
+			    				<label id="seeds"/>
+			    			</tablechildren>
+			    		</tablelayout>
+			    		<tablelayout columns="2">
+			    			<tablechildren>
+			    				<label value="Magnet link:"/>
+			    			</tablechildren>
+			    			<tablechildren>
+			    				<a id="magnetLink" image="/image/magnet-icon-main-24.png" hoverImage="/image/magnet-icon-fix-24.png" width="24px" height="24px" />
+			    			</tablechildren>
+
+			    			<tablechildren>
+			    				<label value="Torrent file:"/>
+			    			</tablechildren>
+			    			<tablechildren>
+			    				<a id="torrentFile" image="/image/arrow-down-main-24.png" hoverImage="/image/arrow-down-fix-24.png" width="24px" height="24px" />
+			    			</tablechildren>
+			    		</tablelayout>
+			    	</hbox>
+			  	</groupbox>
+	            <listbox id="files" height="100%">
+                	<listhead>
+                		<listheader width="70%"/>
+                		<!-- 
+                			sortAscending="@load(vmTorrent.pathAsc)"
+                			sortDescending="@load(vmTorrent.pathDsc)" onCreate="self.sort(true);"
+                			 -->
+                		<listheader hflex="min"/>
+                		<!-- 
+                			sortAscending="@load(vmTorrent.sizeAsc)"
+                			sortDescending="@load(vmTorrent.sizeDsc)"
+                			 --> 
+                		<listheader hflex="min"/>
+                	</listhead>
+                	<template name="model">
+                		<listitem value="${each}">
+                			<listcell
+                				label="@load(self.parent.value.path)" />
+                			<listcell
+                				label="@load(self.parent.value.size) @converter(vmTorrent.humanReadableByteCount)">
+                				<!-- tooltip="${self.uuid}">
+                				<popup id="${self.parent.uuid}">
+                					<label
+                						value="@load(self.parent.parent.parent.value.size)" />
+                					<label value="byte(s)" />
+                				</popup-->
+                			</listcell>
+                			<listcell>
+                				<button image="/image/play-24-${self.parent.parent.value.status.name()}.png" hoverImage="/image/play-24.png" visible="@load(self.getAttribute('showExtensions').contains(self.parent.parent.value.extension) and (self.parent.parent.value.statusName eq 'LISTING' or self.parent.parent.value.statusName eq 'PLAYING'))">
+                					<custom-attributes showExtensions="mp3"/>
+                					<attribute name="onClick"><![CDATA[
+	                                   if(self.parent.parent.value.extension.equals("mp3")){
+	                                	   torrentDetails.getAttribute("torrentDetails$TorrentDetailsController").playThisTrack(self.parent.parent.value);
+	                                	   self.setImage("/image/progress-24.png");
+	                                	}
+									]]></attribute>
+                				</button>
+                				<hbox align="left" height="40px" visible="@load(self.parent.parent.value.statusName eq 'LOADING')">
+                					<progressmeter id="${self.parent.parent.uuid}" value="0" width="55px"/>
+                				 </hbox>
+                				<a label="View" visible="@load(self.getAttribute('showExtensions').contains(self.parent.parent.value.extension))">
+                					<custom-attributes showExtensions="txt,pdf,html,jpg,jpeg,png,gif,tif,tiff"/>
+                					<attribute name="onClick"><![CDATA[
+	                                   if("txt,pdf,html".contains(self.parent.parent.value.extension)){
+	                                	   torrentDetails.getAttribute("torrentDetails$TorrentDetailsController").openWindow("./show_document.zul",
+	       										self.parent.parent.value, "overlapped", false);
+	                                   }
+	                                   if("jpg,jpeg,png,gif,tif,tiff".contains(self.parent.parent.value.extension)){
+	                                	   torrentDetails.getAttribute("torrentDetails$TorrentDetailsController").openWindow("./show_image.zul",
+	       										self.parent.parent.value, "overlapped", false);
+	                                   }
+									]]></attribute>
+                				</a>
+                			</listcell>
+                		</listitem>
+                	</template>
+	            </listbox>
+	            <listbox id="similarTorrentsList" height="100%" multiple="true" itemRenderer="view.TorrentListRenderer" visible="false">
+						<listhead>
+							<listheader align="left"/>
+							<listheader width="120px"/>
+							<listheader width="60px"/>
+							<listheader width="60px"/>
+						</listhead>
+	            </listbox>
+	            	
+			</vlayout>
+			</scrolldiv>
+			<vlayout sclass="column3" >
+				<groupbox title="Comments">
+					<n:div style="padding-left:10px" id="disqus_thread"></n:div>
+				</groupbox>
+			</vlayout>
+		</hlayout>
+			<hlayout vflex="min" style="background-color: #FFFFFF;">
+			<vlayout sclass="column1" >
+			</vlayout>
+
+			<vlayout sclass="column2" vflex="min">
+
+			</vlayout>
+			<vlayout sclass="column3" >
+	
+			</vlayout>
+		</hlayout>
+    	<iframe name="hiddenIframe" visible="false"/>
+    	<timer id="timer" delay="60000" repeats="true">
+	        <attribute name="onTimer">
+	            <![CDATA[
+		            import controller.TorrentDetailsController;
+		        	((TorrentDetailsController)torrentDetails.getAttribute("torrentDetails$TorrentDetailsController")).showLatestTorrents();
+				]]></attribute>
+        </timer>
+</window>
+</zk>

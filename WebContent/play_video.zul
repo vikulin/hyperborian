@@ -1,0 +1,21 @@
+<?page title="Hyperborian player" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico" ?>
+<zk>
+	<window title="Playing..." mode="overlapped" border="normal" apply="controller.PlayVideoController" closable="true" width="100%" height="100%">
+          <video id="video" controls="true" autoplay="true" />
+          <hlayout>
+            <div id="jp_container_1" class="jp-video">
+                <div class="jp-type-single">
+                  <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                </div>
+            </div>
+        	<hbox width="100%"/>
+            <vlayout>
+                <button id="playButton"  label="Play"  width="150px" />
+                <button id="pauseButton" label="Pause" width="150px" />
+                <button id="stopButton"  label="Stop"  width="150px" />
+            </vlayout>
+        </hlayout>
+        
+	</window>
+</zk>

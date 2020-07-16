@@ -1,0 +1,29 @@
+<zk xmlns:h="native">
+	<style>
+	.custom-label {
+		padding-top: 6%;
+		padding-left:5px;
+		padding-right:5px;
+	    display: inline-block;
+	    cursor: pointer;
+	    min-height: 48px;
+	    width: 100%;
+	    font-size:11pt;
+	    line-height: 1.6;
+	}
+	</style>
+	<window>
+	  	<h:label class="custom-label">
+	  		Hyperborian is designed to search for torrents using available metainfo: such as file names, extensions etc. All files are sorted out by filters:
+	   	</h:label>
+	   	<h:ul id="ul" style="line-height: 1.6">
+             <h:li><a href="/index.zhtml?software=1">Software</a></h:li>
+             <h:li><a href="/index.zhtml?video=1">Video</a></h:li>
+             <h:li><a href="/index.zhtml?audio=1">Audio</a></h:li>
+             <h:li><a href="/index.zhtml?images=1">Images</a></h:li>
+             <h:li><a href="/index.zhtml?documents=1">Documents</a></h:li>
+             <h:li><a href="/index.zhtml?archives=1">Archives</a></h:li>
+             <h:li><a href="/index.zhtml?disk_images=1">Disk Images</a></h:li>
+         </h:ul>
+	</window>
+</zk>

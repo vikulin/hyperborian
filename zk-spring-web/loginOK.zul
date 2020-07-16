@@ -1,0 +1,8 @@
+<html height="30px">
+<attribute name="content">
+<div align="center">
+<h3>Welcome, ${execution.userPrincipal.name}</h3>
+<h3>Login successful</h3>
+</div>
+</attribute>
+</html>

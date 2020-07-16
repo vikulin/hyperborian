@@ -1,0 +1,62 @@
+<zk>
+	<window apply="controller.RegisterUserController" width="320px" closable="true" id="userWin">
+		<groupbox title="Register new user" apply="org.zkoss.bind.BindComposer" 
+			viewModel="@id('vmUser') @init('viewmodel.UserViewModel')">
+			<tablelayout columns="1">
+			    <tablechildren>
+			    	<hbox align="center" hflex="1" vflex="1">
+						<label value="Username" />
+			    	</hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <textbox id="username" value="${arg.object.username}" constraint="no empty"/>
+			    </tablechildren>
+			    <tablechildren>
+			    	<hbox align="center" hflex="1" vflex="1">
+			        	<label value="Email:" />
+			        </hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <textbox id="email" value="${arg.object.email}" constraint="no empty"/>
+			    </tablechildren>
+			   	<tablechildren>
+			   		<hbox align="center" hflex="1" vflex="1">
+			        	<label value="Password:" />
+			        </hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <textbox id="password" value="${arg.object.password}" type="password" constraint="no empty"/>
+			    </tablechildren>
+			    <tablechildren>
+			    	<hbox align="center" hflex="1" vflex="1">
+			        	<label value="Confirm password:" />
+			        </hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <textbox id="confirmPassword" value="${arg.object.password}" type="password" constraint="no empty"/>
+			    </tablechildren>
+				<tablechildren>
+			    	<hbox align="center" hflex="1" vflex="1">
+			        	<label value="Role:" />
+			        </hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <combobox id="role" model="@load(vmUser.roles)" selectedItem="@bind(vmUser.role)"
+						value="@load(arg.object.userRoles.iterator().next().role.name)" width="215px">
+						<template name="model">
+							<comboitem label="@load(each.name)" value="@load(each)"/>
+						</template>
+				</combobox>
+			    </tablechildren>
+			</tablelayout>
+			<separator />
+			<hbox width="100%" widths="20%,25%,15%,20%,20%">
+				<span />
+				<button id="saveButton" label="Save" />
+				<span />
+				<button id="closeButton" label="Cancel" />
+				<span />
+			</hbox>
+		</groupbox>
+	</window>
+</zk>

@@ -1,0 +1,6 @@
+<zk>
+	<vbox>
+		<space orient="horizontal"/>
+		<iframe id="uploadIframe" sclass="test" src="/template/upload.zhtml" xmlns:ca="client/attribute" ca:onload="var widget = zk.Widget.$('$torrents'); if(!!widget){zAu.send(new zk.Event(zk.Widget.$('$torrents'), 'onUploading', {name : 'Test' }, {toServer:true}));;}"  height="350px" width="100%"/>
+	</vbox>
+</zk>

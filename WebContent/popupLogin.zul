@@ -1,0 +1,64 @@
+<zk>
+<style>
+.z-button {
+	color: #FFFFFF;
+    background:#5687A8;
+}
+</style>
+<groupbox width="330px">
+    <html:form id="f" name="f" action="j_spring_security_check" method="POST" xmlns:html="native">
+    	<tablelayout columns="2">
+		    <tablechildren>
+		    	<hbox align="center" hflex="1" vflex="1">
+					<label value="Username:"/>
+		    	</hbox>
+		    </tablechildren>
+		    <tablechildren>
+		        <textbox id="u" name="j_username"/>
+		    </tablechildren>
+		   	<tablechildren>
+		    	<hbox  height="5px">
+					<label value=" "/>
+		    	</hbox>
+		    </tablechildren>
+		    <tablechildren>
+		        
+		    </tablechildren>
+	 		<tablechildren>
+		    	<hbox align="center" hflex="1" vflex="1">
+					<label value="Password:"/>
+		    	</hbox>
+		    </tablechildren>
+		    <tablechildren>
+		        <textbox id="p" type="password" name="j_password"/>
+		    </tablechildren>
+		    <tablechildren>
+		    	<hbox  height="5px">
+					<label value=" "/>
+		    	</hbox>
+		    </tablechildren>
+		    <tablechildren>
+		        
+		    </tablechildren>
+		    <tablechildren>
+		    	<hbox align="center" hflex="1" height="5px">
+					<label value=" "/>
+		    	</hbox>
+		    </tablechildren>
+		    <tablechildren>
+		        <checkbox id="r" name="_spring_security_remember_me" label="Remember me"/>
+		    </tablechildren>
+		</tablelayout>
+		<separator/>
+		<hbox pack="center" vflex="1" width="100%">
+			<button type="submit" label="Login" width="210px"/>
+		</hbox>
+		<separator/>
+    </html:form>
+    </groupbox>
+    <separator/>
+    <div style="color:red" if="${not empty param.login_error}" >
+        Your login attempt was not successful, try again.
+        Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
+    </div>
+</zk>

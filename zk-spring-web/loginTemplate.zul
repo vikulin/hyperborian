@@ -1,0 +1,29 @@
+<?page id="loginFrame"?>
+<zk>
+<style>
+.z-window {
+	padding:0px;
+}
+.z-window-header  {
+	padding-bottom: 0px;
+}
+.z-window-content {
+    padding: 15px;
+}
+.z-center-body {
+	padding: 0px;
+}
+</style>
+<window title=" " 
+	width="${empty arg.width ? '500px' : arg.width}"
+	height="${empty arg.height ? '320px' : arg.height}" 
+	closable="true" sizable="true" border="none" mode="highlighted"
+	apply="org.zkoss.spring.security.ui.webapp.LoginTemplateComposer">
+	<custom-attributes loginOKDelay="${arg.loginOKDelay}"/> 
+	<borderlayout>
+	<center border="none">
+		<iframe id="loginfrm" width="100%" height="100%" src="${arg.loginUrl}"/>
+	</center>
+	</borderlayout>
+ </window>
+</zk>

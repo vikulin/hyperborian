@@ -1,0 +1,61 @@
+<zk>
+	<window apply="controller.ModifyTopDownloadsIndexTaskController" width="340px" closable="true" id="indexerWin">
+		<groupbox title="Индексирования топ загрузок" apply="org.zkoss.bind.BindComposer">
+			<tablelayout columns="1">
+			    <tablechildren>
+			    	<hbox align="center" hflex="1" vflex="1">
+						<label value="Name" />
+			    	</hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <textbox id="name" value="${arg.object.name}" constraint="no empty"/>
+			    </tablechildren>
+			    <tablechildren>
+			    	<hbox align="center" hflex="1" vflex="1">
+						<label value="Limit records" />
+			    	</hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <intbox id="limit" value="${arg.object.limit}"/>
+			    </tablechildren>
+			    <tablechildren>
+			        <hbox align="center" hflex="1" vflex="1">
+						<separator />
+			    	</hbox>
+			    </tablechildren>
+			    <tablechildren>
+			    	<checkbox id="schedule" label="Schedule execution"/>
+			    </tablechildren>
+			    <tablechildren>
+			        <hbox align="center" hflex="1" vflex="1">
+						<separator />
+			    	</hbox>
+			    </tablechildren>
+			    <tablechildren>
+			        <intbox id="schedulePeriod"/>
+			    </tablechildren>
+			    <tablechildren id="scheduleContainer" visible="false">
+			    	<radiogroup id="timeUnit" />
+				    <grid>
+				        <rows>
+				            <row spans="3">Choose schedule time unit:</row>
+				            <row>
+				            	<radio id="minutes" label="Minute(s)" radiogroup="timeUnit" />
+				                <radio id="hours" label="Hour(s)" radiogroup="timeUnit" checked="true"/>
+				                <radio id="days" label="Day(s)" radiogroup="timeUnit" />
+				            </row>
+				        </rows>
+				    </grid>
+			    </tablechildren>
+			</tablelayout>
+			<separator />
+			<hbox width="100%" widths="20%,25%,15%,20%,20%">
+				<span />
+				<button id="saveButton" label="Save" />
+				<span />
+				<button id="closeButton" label="Cancel" />
+				<span />
+			</hbox>
+		</groupbox>
+	</window>
+</zk>

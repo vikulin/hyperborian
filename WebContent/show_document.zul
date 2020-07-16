@@ -1,0 +1,12 @@
+<?page title="Hyperborian" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window border="none" apply="controller.ViewDocumentController" closable="true" position="center, top" sizable="true" height="100%" width="100%">
+			<div id="progress" align="center" height="100%" width="100%" style="display: table;">
+				<div  height="100%" width="100%" style="display: table-cell;vertical-align: middle;">
+					<progressmeter id="loadingIcon" width="50%" value="0"/>
+				</div>
+    		</div>
+		    <iframe id="report" autohide="true" visible="false" width="100%"  height="100%"/>
+		    
+	</window>
+</zk>

@@ -1,0 +1,15 @@
+<?page title="Удаление" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Удаление" border="normal" id="deleteWin"
+	apply="controller.DeleteController" width="300px" closable="true">
+	<groupbox>
+		<hbox width="100%" widths="25%,20%,10%,20%,25%">
+			<span/>
+			<button id="yes" label="Да"/>
+			<span/>
+			<button id="closeButton" label="Нет"/>
+			<span/>
+		</hbox>
+	</groupbox>
+</window>
+</zk>

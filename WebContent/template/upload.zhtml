@@ -1,0 +1,158 @@
+<zk xmlns:zk="http://www.zkoss.org/2005/zk">
+<style>
+.z-button {
+    font-size:14px;
+    text-shadow: none; /*(@baseTitleFontFamily, 14px, normal, #FFFFFF); */
+    border: none;
+    /* omitted */
+    width: 150px;
+}
+.z-button {
+    .borderRadius(0);
+}
+.z-button {
+	color: #FFFFFF;
+    background:#5687A8;
+}
+.z-button:hover {
+   color: #FFFFFF;
+   background:#5E94B8;
+   .boxShadow(inset 0 -2px 0 #436983); /* for simulation 3d effect */
+}
+.z-button:active {
+   color: #FFFFFF;
+   background:#4C7895;
+   .boxShadow(inset 0 2px 0 #3A5B72); /* for simulation 3d effect */
+}
+.z-button:focus {
+   color: #FFFFFF;
+   background:#436983;
+   .boxShadow(none);
+}
+.z-button[disabled] {
+   color: #FFFFFF;
+   background:#ACACAC;
+   .boxShadow(none);
+   .opacity(1); /* no opacity needed */
+}
+.z-button {
+    /* omitted */
+    min-height: 32px;
+    
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+	text-align: center;
+	padding-top: 30%;
+	padding-bottom: 30%;
+    display: inline-block;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+}
+
+.nowrap{
+	white-space: nowrap ;
+    text-overflow: ellipsis;
+}
+
+.custom-label {
+	text-align: center;
+	padding-top: 6%;
+	padding-bottom: 5%;
+	padding-left:5px;
+	padding-right:5px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+    min-height: 48px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.border{
+	border: 1px solid #ccc;
+}
+.z-tab-text{
+	color: #5687A8;
+}
+.z-tab-selected{
+	border-bottom:0;
+}
+.z-window {
+	padding:0px;
+}
+
+.z-window-content {
+	padding:0px;
+}
+progress
+{
+  text-align:center;
+  height: 1.5em;
+  width: 100%;
+
+  -webkit-appearance: none;
+  border: none;
+}
+
+progress:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  vertical-align: 0
+}
+
+progress::-webkit-progress-bar {
+  background-color: #c9c9c9;
+}
+
+progress::-webkit-progress-value {
+  background-color: #5687A8;
+}
+
+progress::-moz-progress-bar
+{
+  background-color: #5687A8;
+}
+.hidden{
+	visibility:hidden;
+}
+.visible{
+	visibility:visible;
+}
+</style>
+	<window id="upload" border="none" apply="controller.UploadFileController" xmlns:h="native" xmlns:w="http://www.zkoss.org/2005/zk/client">
+		<script src="/js/upload.js" defer="true"/>
+	    	<hbox height="11px" hflex="1"/>
+	    	<div sclass="border" id="dropArea">
+		    	<h:label class="custom-file-upload">
+		    		<h:input id="files" type="file" name="files" h:onchange="zAu.send(new zk.Event(zk.Widget.$('$upload'), 'onSendFile', {'name': this.files[0].name}, {toServer:true}));"/>
+		    			Drop your files here
+		    	</h:label>
+	    	</div>
+	    	<hbox height="11px" hflex="1"/>
+			<div class="nowrap">
+				<label id="fileName" value="Max file size: 5GB" class="custom-label" multiline="false"/>
+			</div>
+			<hbox height="5px" hflex="1"/>
+			<div id="seedingWarning" class="nowrap">
+				<label value="Seeding time: 24 hours" class="custom-label" multiline="true"/>
+			</div>
+			<hbox height="11px" hflex="1"/>
+	    	<div id="submitContainer" align="center" visible="false">
+	    		<h:progress id="progress" max="100"/>
+		    	<h:p/>
+	    		<button id="submitButton" sclass="upload_btn" label="Create" w:onClick="upload();"/>
+	    	</div>
+	    	<div id="resultContainer" align="center" visible="false">
+	    		<label>Torrent file created successfully!</label>
+	    		<h:p/>
+	    		<a id="torrentLink">Here is your link.</a>
+		     	<h:p/>
+				<button id="resetButton" label="Reset" href="/template/upload.zhtml"/>
+	    	</div>
+     </window>
+</zk>

@@ -1,0 +1,466 @@
+<?page title="Hyperborian - Torrent search engine" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico" ?>
+<?meta http-equiv="content-type" content="text/html; charset=UTF-8"?>
+<?meta name="google-site-verification" content="CW5GmWl0Ae6Sj16QOxohzjpHhvROPFdQTvAJ-8PNaLg" ?>
+<?taglib uri="http://www.zkoss.org/dsp/web/theme" prefix="t"?>
+<?variable-resolver class="org.zkoss.spring.DelegatingVariableResolver"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<zk>
+<style>
+body{
+	padding:0px 0px;
+	font-family:"Helvetica neue",Helvetica,Verdana,Sans-serif;
+}
+.column1 .z-window-embedded-cnt {
+	background: #005DFF;
+	color: #FFFFFF;
+}
+.column2 .z-window-embedded-cnt {
+	background: #FF7A00;
+	color: #FFFFFF;
+}
+
+.column3 .z-window-embedded-cnt {
+	background: #417D00;
+	color: #FFFFFF;
+}
+
+.z-textbox {
+    /* omitted */
+    font-size: 20px;
+    min-height: 32px;
+}
+.z-button {
+    font-size:14px;
+    text-shadow: none; /*(@baseTitleFontFamily, 14px, normal, #FFFFFF); */
+    border: none;
+    /* omitted */
+}
+.z-button {
+    .borderRadius(0);
+}
+.z-button {
+	color: #FFFFFF;
+    background:#5687A8;
+}
+.z-button:hover {
+   color: #FFFFFF;
+   background:#5E94B8;
+   .boxShadow(inset 0 -2px 0 #436983); /* for simulation 3d effect */
+}
+.z-button:active {
+   color: #FFFFFF;
+   background:#4C7895;
+   .boxShadow(inset 0 2px 0 #3A5B72); /* for simulation 3d effect */
+}
+.z-button:focus {
+   color: #FFFFFF;
+   background:#436983;
+   .boxShadow(none);
+}
+.z-button[disabled] {
+   color: #FFFFFF;
+   background:#ACACAC;
+   .boxShadow(none);
+   .opacity(1); /* no opacity needed */
+}
+.z-button {
+    /* omitted */
+    min-height: 32px;
+    
+}
+.z-image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.z-hlayout-inner {
+	${t:applyCSS3('box-sizing', 'border-box')};
+	height: 100%;
+}
+.z-hlayout-inner:first-child {
+	width: 15%;
+}
+.z-hlayout-inner {
+	width: 65%;
+}
+.z-hlayout-inner:last-child {
+	width: 20%;
+}
+
+div.z-hlayout-inner{
+	padding-right: 0px !important;
+}
+div.z-vlayout-inner{
+	padding-top: 5px;
+	padding-bottom: 0px !important;
+}
+
+.z-listgroup-icon{
+    display: none;
+}
+
+.name {
+	color: #0654ba;
+	font-size: 11pt;
+	font-weight:700;
+}
+.price {
+	color:#333;
+	font-size:11pt;
+	line-height:1.1;
+	font-weight:700;
+}
+ 
+.z-a {
+	color: #5687A8;
+    text-decoration: none;
+}
+
+.z-a:hover {
+	color: #5E94B8;
+    text-decoration: underline;
+}
+
+.z-a:visited {
+	color: #0654ba;
+    text-decoration: underline;
+}
+
+.z-listcell-content{
+	font-size: 11pt;
+}
+
+.z-nav-text{
+	font-size: 11pt;
+}
+.z-navbar>ul ul .z-nav-text, .z-navbar>ul ul .z-navitem-text{
+	font-size: 11pt;
+}
+
+@media screen and (max-width: 1300px) {
+	i[class^="z-icon-"] { 
+  		display: none;
+  	}
+  	.z-tab-text{
+  		font-size: 11pt;
+  	}
+}
+
+@media screen and (max-width: 1250px) {
+	.z-nav-text{
+		font-size: 10pt;
+	}
+	.z-tab-text{
+  		font-size: 10pt;
+  	}	
+}
+
+@media screen and (max-width: 1024px) {
+	.z-hlayout-inner:first-child {
+		width: 25%;
+	}
+	.z-hlayout-inner {
+		width: 75%;
+	}
+	.z-hlayout-inner:last-child {
+		display: none;
+	}
+	.z-a {
+		font-size:10pt;
+		font-weight:600;
+	}
+	.title {
+		color: #0654ba;
+		font-size:10pt;
+		font-weight:600;
+	}
+	.price {
+		color:#333;
+		font-size:10pt;
+		line-height:1.1;
+		font-weight:700;
+	}
+	.z-listcell-content{ 
+  		font-size:10pt;
+  	}
+}
+ 
+@media screen and (max-width: 750px) {
+	.z-hlayout-inner:first-child {
+		display: none;
+	}
+	.z-hlayout-inner {
+		width: 100%;
+		display: block;
+	}
+	.z-a {
+		font-size:9pt;
+		font-weight:600;
+	}
+	.title {
+		color: #0654ba;
+		font-size:8pt;
+		font-weight:600;
+	}
+	.price {
+		color:#333;
+		font-size:8pt;
+		line-height:1.1;
+		font-weight:700;
+	}
+	.z-listcell-content{ 
+  		font-size:9pt;
+  	}
+}
+
+@media screen and (max-width: 500px) {
+	.wiki_text {
+		display: none;
+	}
+}
+
+.z-listgroup .z-listcell-content {
+	color: #5687A8;
+	font-weight:600;
+    font-family: arial,sans-serif;
+}
+
+.z-window {
+	padding:0px;
+}
+
+.z-window-content {
+	padding-left:16px;
+	padding-right:5px;
+	padding-top:0;
+	padding-bottom:5px;
+}
+
+.z-center-body {
+ 	padding-left:0px;
+}
+
+.top-downloads .z-window-content {
+ 	padding-top: 5px;
+ 	padding-left:0px;
+}
+
+.z-listheader {
+	background: #5687A8;
+	border-left: 0px solid #bfc4c0;
+	border-bottom: 1px solid #bfc4c0;
+}
+.z-listcell {
+	padding-left:5px;
+	word-wrap: break-word;
+}
+
+.z-north-body, .z-south-body, .z-west-body, .z-center-body, .z-east-body{
+	padding-top: 0;
+}
+.z-listbox-header {
+    background: #5687A8;
+}
+.z-listhead-bar {
+    border-left: 1px solid #5687A8;
+    border-bottom: 1px solid #5687A8;
+}
+em {
+	color: #5a5a5a;
+    font-weight:750;
+    font-style: normal;
+}
+
+.z-listgroup.z-listgroup-open .z-listgroup-inner{
+	border-bottom: 1px solid #e8f5ff;
+	border-top: 1px solid #5687A8;
+	
+}
+
+.z-listgroup-inner .z-listcell-content, .z-listgroup-inner {
+	padding-top: 2px;
+	padding-bottom: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+	
+}
+
+.z-listgroup.z-listgroup-open .z-listgroup-inner .z-listgroup-icon, .z-listgroup.z-listgroup-open .z-listgroup-inner .z-listcell-content {
+    color: #5687A8;
+}
+
+.z-listitem-selected>.z-listcell>.z-listcell-content>.z-listitem-checkable .z-listitem-icon.z-icon-radio{
+	background: #5687A8;
+}
+
+.z-north-body{
+	padding-bottom:0;
+	padding-top:5px;
+}
+
+.z-tab-text{
+	color: #5687A8;
+}
+
+.z-navbar-vertical .z-nav-selected, .z-nav-popup .z-nav-selected{
+	    border-left: 0px;
+}
+.z-navbar-vertical .z-nav-open, .z-nav-popup .z-nav-open{
+	    border-left: 0px;
+}
+</style>
+<window width="100%" id="torrents" apply="controller.TorrentListController" border="none" height="100%">
+		<script src="/js/upload.js" defer="true"/>
+		<script src="/js/wiki.js" defer="true"/>
+		<script src="https://www.googletagmanager.com/gtag/js?id=UA-135516472-1" defer="true"/>
+		<script defer="true">
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'UA-135516472-1');
+		</script>				
+		<hlayout vflex="min" style="background-color: #FFFFFF;">
+			<vlayout sclass="column1" >
+				<a href="/">
+					<image src="/image/logo-m.png" />
+				</a>
+			</vlayout>
+
+			<vlayout sclass="column2" vflex="max">
+				<groupbox style="background-color: #FFFFFF;"  contentStyle="border:0">
+					<hbox pack="center" widths="93%,7%" width="60%" >
+						<textbox id="name" width="99%" maxlength="255" />
+						<button id="searchButton" label="Search" forward="torrents.onOK"/>
+					</hbox>
+				</groupbox>
+			</vlayout>
+			
+			<vlayout sclass="column3">
+				<hbox height="11px" hflex="1">
+	
+				</hbox>
+				<tablelayout id="logoutLayout" columns="2" visible="${not empty execution.userPrincipal}">
+				    <tablechildren>
+				    	<hbox align="center" vflex="1" width="150px">
+							<label value="Welcome, "/><a id="userName" />
+				    	</hbox>
+				    </tablechildren>
+				    <tablechildren>
+				        <button label="Logout" href="/j_spring_security_logout" />
+				    </tablechildren>
+			    </tablelayout>
+				<hbox id="loginLayout" pack="center" widths="50%,50%" width="50%" visible="${empty execution.userPrincipal}">
+					<button id="usr_edit_${self.uuid}" label="Login">
+						<attribute name="onClick"><![CDATA[
+						]]></attribute>
+					</button>
+					<button label="Register">
+						<attribute name="onClick"><![CDATA[
+								torrents.getAttribute("torrents$TorrentListController").openWindow("/new_user.zul", new model.pojo.UserPojo());
+						]]></attribute>
+					</button>
+				</hbox>
+			</vlayout>
+
+		</hlayout>
+
+		<hlayout vflex="1" style="background-color: #FFFFFF;">
+			<vlayout sclass="column1">
+					<div sclass="z-tabbox z-tabbox-top" viewModel="@id('nav') @init('viewmodel.NavigationViewModel')">
+						 <navbar id="navbar" orient="vertical" collapsed="false" onSelect="@command('navigatePage', target=self.selectedItem.attributes['navigationPage'])">
+             				<nav label="Share torrents instantly!" iconSclass="z-icon-share-square-o" children="@load(nav.pageMap[self.label].values()) @template('navitem')"/>
+             				<nav label="Easy to search" iconSclass="z-icon-search-plus" children="@load(nav.pageMap[self.label].values()) @template('navitem')"/>
+             				<nav label="Enjoy your music" iconSclass="z-icon-music" children="@load(nav.pageMap[self.label].values()) @template('navitem')"/>
+             				<nav label="Read books" iconSclass="z-icon-book" children="@load(nav.pageMap[self.label].values()) @template('navitem')"/>
+             				<nav label="Help" iconSclass="z-icon-info-circle" children="@load(nav.pageMap[self.label].values()) @template('navitem')"/>
+            			</navbar>
+						<template name="navitem" var="navigationPage">
+			                <navitem label="@load(navigationPage.subTitle)" selected="@load(navigationPage.selected)">
+			                </navitem>
+			            </template>
+			            <include id="contentInclude" mode="instant" sclass="content"
+		                 currentPage="@ref(nav.currentPage)" src="@load(currentPage.includeUri)" />
+					</div>
+					
+				
+					<listbox id="categoryListbox" checkmark="true" visible="false">
+						<listhead>
+							<listheader label="Categories"/>
+						</listhead>
+	                    <template name="model">
+	                        <listitem label="${each.toString()}" />
+	                    </template>
+                	</listbox>
+				
+				<groupbox title="Size" visible="false">
+					<hbox  hflex="max" align="center">
+						<decimalbox id="sizeFrom" width="100%" constraint="no negative" maxlength="4" placeholder="Min"/>
+						<decimalbox id="sizeTo" width="100%" constraint="no negative" maxlength="4" placeholder="Max"/>
+						<label value="GB"/>
+					</hbox>
+				</groupbox>
+			</vlayout>
+			<borderlayout>
+			<north border="none">
+				<tabbox id="categoryTab" width="100%">
+				    <template name="model:tab">
+				    	<tab label="${each.toString()}" value="${each}"/>
+				    </template>
+				    <template name="model:tabpanel">
+						<tabpanel visible="false">
+						</tabpanel>
+					</template>
+				</tabbox>
+			</north>
+			<center style="overflow:auto; overflow-x: hidden; padding-left: 16px;" border="none">
+				<vlayout sclass="column2">
+					<listbox id="listbox" emptyMessage="No results"  multiple="true" itemRenderer="view.TorrentListGroupRenderer">
+						<listhead>
+							<listheader align="left"/>
+							<listheader width="80px"/>
+							<listheader width="45px"/>
+							<listheader width="45px"/>
+						</listhead>
+					</listbox>
+				</vlayout>
+			</center>
+			</borderlayout>
+			<window width="100%" id="topDownloadsWin" apply="controller.TopDownloadsListController" border="none" height="100%" sclass="top-downloads">
+			<borderlayout>
+				<center style="overflow:auto; overflow-x: hidden;" border="none">
+					<listbox id="topDownloads" emptyMessage="No results" itemRenderer="view.TopDownloadsRenderer">
+						<listhead>
+							<listheader label="Top downloads" width="100%" align="left"/>
+						</listhead>
+						<template name="model">
+							<listitem>
+								<listcell label="@load(self.value.toString())" value="${each}"/>
+							</listitem>
+						</template>
+					</listbox> 
+				</center>
+			</borderlayout>
+			</window>
+		</hlayout>
+			<hlayout vflex="min" style="background-color: #FFFFFF;">
+			<vlayout sclass="column1" >
+			</vlayout>
+
+			<vlayout sclass="column2" vflex="min">
+				<groupbox style="background-color: #FFFFFF;" height="68px"  contentStyle="border:0">
+					<hbox pack="center" widths="5%,5%,5%" width="100%" >
+						<button id="back" label="Back"/>
+						<a id="pageNumber" label="1"/>
+						<button id="next" label="Next"/>
+					</hbox>
+				</groupbox>
+			</vlayout>
+			<vlayout sclass="column3" >
+	
+			</vlayout>
+		</hlayout>
+    	<iframe name="hiddenIframe" visible="false"/>
+</window>
+</zk>

@@ -1,0 +1,19 @@
+<?page title="Attach wiki data" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Attach wiki data" border="normal" apply="controller.AttachWikiDataController" width="360px" closable="true" id="attachWikiDataWin">
+	<tablelayout columns="2" width="200px">
+		<tablechildren>
+			<label value="Qxxxxx:"/>
+		</tablechildren>
+		<tablechildren>
+			<textbox id="wikiDataIdText" constraint="no empty"/>
+		</tablechildren>
+		<tablechildren>
+			<button id="saveButton" label="Save" />
+		</tablechildren>
+		<tablechildren>
+			<button id="closeButton" label="Cancel" />
+		</tablechildren>
+   	</tablelayout>
+</window>
+</zk>

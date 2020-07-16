@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="false"
+	monitoring="autodetect" dynamicConfig="true">
+	<!-- cache name="dictionaryCache" maxElementsInMemory="10000"
+		eternal="true" timeToIdleSeconds="600" timeToLiveSeconds="3600"
+		overflowToDisk="false">
+	</cache-->
+	
+	<defaultCache maxElementsInMemory="10000"
+		eternal="true" timeToLiveSeconds="10"
+		overflowToDisk="false">
+	</defaultCache>
+
+	<cache name="org.hibernate.cache.internal.StandardQueryCache"
+		maxElementsInMemory="500" eternal="false"/>
+
+	<cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
+		maxElementsInMemory="50" eternal="false" timeToLiveSeconds="10"/>
+
+</ehcache>

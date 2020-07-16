@@ -1,0 +1,20 @@
+<zk xmlns:h="native">
+	<style>
+	.custom-label {
+		padding-top: 6%;
+		padding-left:5px;
+		padding-right:5px;
+	    display: inline-block;
+	    cursor: pointer;
+	    min-height: 48px;
+	    width: 100%;
+	    font-size:11pt;
+	    line-height: 1.6;
+	}
+	</style>
+	<window>
+	  	<h:label class="custom-label">
+			We are a non-profit organization specializing in the provision of decentralized services. Our mission is to change the approach to protecting intellectual property. We believe that protective measures against unauthorized access to data should be provided along with this data. Anyone should not be restricted from using, modifying or distributing commercial software unless such restrictive measures are provided for in this instance. From this point of view, any copy of a program has no differences from ordinary things such as a car with a built-in access authorization mechanism called a lock.
+	   	</h:label>
+	</window>
+</zk>

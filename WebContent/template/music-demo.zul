@@ -1,0 +1,3 @@
+<window closable="true" mode="modal" title="@load(currentPage.title)" position="center,center" width="860px" apply="controller.VideoController">
+	<video id="video" src="@load(currentPage.data)" autoplay="true" controls="true"/>
+</window>

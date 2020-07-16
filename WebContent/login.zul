@@ -1,0 +1,46 @@
+<?link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico" ?>
+<window id="loginwin" border="normal" width="100%" height="100%">
+	<div align="center">
+		<groupbox width="400px">
+	    <h:form id="f" name="f" action="j_spring_security_check" method="POST" xmlns:h="http://www.zkoss.org/2005/zk/native">
+			<hbox width="100%" widths="50%,50%">
+				<label value="User:"/>
+				<textbox id="u" name="j_username"/>
+			</hbox>
+			<separator/>
+			<hbox width="100%" widths="50%,50%">
+				<label value="Password:"/>
+				<textbox id="p" type="password" name="j_password"/>
+			</hbox>
+			<separator/>
+			<hbox width="100%" widths="50%,50%">
+				<span/>
+				<checkbox id="r" name="_spring_security_remember_me" label="Remember me"/>
+			</hbox>
+			<separator/>
+			<hbox width="100%" widths="20%,30%,5%,35%,10%">
+				<span/>
+					<a href="/NewUser.zul">Register user</a>
+				<span/>
+					<a href="/">Forgot password</a>
+				<span/>
+			</hbox>
+			<separator/>
+			<separator/>
+			<hbox width="100%" widths="25%,20%,10%,20%,25%">
+				<span/>
+				<h:input type="submit" value="Login"/>
+				<span/>
+				<h:input type="reset" value="Clear"/>
+				<span/>
+			</hbox>
+	    </h:form>
+	    </groupbox>
+	    <html style="color:red" if="${not empty param.login_error}">
+	      <![CDATA[
+	        Your login attempt was not successful, try again.<br>
+	        Reason: ${SPRING_SECURITY_LAST_EXCEPTION.message}
+	       ]]>
+	    </html>
+    </div>
+</window>
