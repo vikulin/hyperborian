@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<properties>
 		<zk-version>8.6.0-Eval</zk-version>
-		<spring-version>4.3.3.RELEASE</spring-version>
+		<spring-version>5.2.20.RELEASE</spring-version>
 		<zkspring-security>3.2.0</zkspring-security>
 		<hibernate-version>4.3.11.Final</hibernate-version>
 		<guava.version>23.0</guava.version>
